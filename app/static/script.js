@@ -4,7 +4,41 @@ const API_BASE = '/api';
 // ===== Local Storage Keys =====
 const LS_KEYS = {
   CURRENT_USER: 'kinovzor_current_user',
+  THEME_MODE: 'kinovzor_theme_mode',
 };
+
+// ===== Theme Management =====
+function initTheme() {
+  const savedTheme = localStorage.getItem(LS_KEYS.THEME_MODE) || 'dark';
+  applyTheme(savedTheme);
+}
+
+function applyTheme(theme) {
+  const html = document.documentElement;
+  if (theme === 'light') {
+    html.classList.add('kv-light-mode');
+    localStorage.setItem(LS_KEYS.THEME_MODE, 'light');
+    updateThemeIcon('light');
+  } else {
+    html.classList.remove('kv-light-mode');
+    localStorage.setItem(LS_KEYS.THEME_MODE, 'dark');
+    updateThemeIcon('dark');
+  }
+}
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const isLight = html.classList.contains('kv-light-mode');
+  applyTheme(isLight ? 'dark' : 'light');
+}
+
+function updateThemeIcon(theme) {
+  const icon = $('#kv-theme-icon');
+  if (icon) {
+    // Dark mode - moon icon, Light mode - sun icon
+    icon.textContent = theme === 'light' ? '☀️' : '🌙';
+  }
+}
 
 // ===== State =====
 let currentUser = null;
@@ -534,6 +568,7 @@ function setupButtons() {
   const regBtn = $('#registerBtn');
   const guestBtn = $('#guestBtn');
   const sortSel = $('#sortSelect');
+  const themeToggle = $('#themeToggle');
 
   if (loginBtn) loginBtn.onclick = login;
   if (regBtn) regBtn.onclick = register;
@@ -542,9 +577,11 @@ function setupButtons() {
     currentSort = e.target.value;
     renderFilms();
   };
+  if (themeToggle) themeToggle.onclick = toggleTheme;
 }
 
 async function init() {
+  initTheme();
   currentUser = loadLS(LS_KEYS.CURRENT_USER, null);
   setupTabs();
   setupButtons();
