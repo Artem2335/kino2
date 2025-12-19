@@ -1,4 +1,5 @@
 :root {
+  /* Dark theme (default) */
   --kv-bg: #111111;
   --kv-bg-alt: #181818;
   --kv-panel: #1f1f1f;
@@ -15,6 +16,20 @@
   --kv-transition: 0.2s ease;
   --kv-header-height: 60px;
   --kv-mobile-padding: 10px;
+}
+
+/* Light theme */
+html.kv-light-mode {
+  --kv-bg: #f5f5f5;
+  --kv-bg-alt: #ffffff;
+  --kv-panel: #fafafa;
+  --kv-border: #e0e0e0;
+  --kv-orange: #ff7a1a;
+  --kv-orange-soft: rgba(255, 122, 26, 0.1);
+  --kv-text: #1a1a1a;
+  --kv-text-muted: #666666;
+  --kv-gray: #d0d0d0;
+  --kv-shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 *,
@@ -52,6 +67,10 @@ body {
   padding: 0 12px;
   background: #000;
   border-bottom: 1px solid var(--kv-border);
+}
+
+html.kv-light-mode .kv-header {
+  background: #ffffff;
 }
 
 .kv-logo {
@@ -145,6 +164,37 @@ body {
   color: var(--kv-orange);
 }
 
+/* Theme Toggle Button */
+.kv-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--kv-gray);
+  background: transparent;
+  color: var(--kv-text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  transition: var(--kv-transition);
+  margin-left: 8px;
+}
+
+.kv-theme-toggle:hover {
+  border-color: var(--kv-orange);
+  color: var(--kv-orange);
+}
+
+.kv-theme-icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+html.kv-light-mode .kv-theme-icon::before {
+  content: '☀️';
+}
+
 /* Layout */
 .kv-main {
   flex: 1;
@@ -200,6 +250,10 @@ body {
   transition: var(--kv-transition);
 }
 
+html.kv-light-mode .kv-auth-tab {
+  background: #f0f0f0;
+}
+
 .kv-auth-tab-active {
   background: var(--kv-orange);
   color: #000;
@@ -237,6 +291,13 @@ body {
   padding: 6px 10px;
   font-size: 12px;
   outline: none;
+}
+
+html.kv-light-mode .kv-form input,
+html.kv-light-mode .kv-form select,
+html.kv-light-mode .kv-form textarea {
+  background: #ffffff;
+  border-color: #d0d0d0;
 }
 
 .kv-form textarea {
@@ -342,6 +403,10 @@ body {
   font-size: 11px;
   cursor: pointer;
   transition: var(--kv-transition);
+}
+
+html.kv-light-mode .kv-genre-btn {
+  background: #f0f0f0;
 }
 
 .kv-genre-btn-active {
@@ -483,6 +548,12 @@ body {
   font-size: 11px;
 }
 
+html.kv-light-mode .kv-select {
+  background: #ffffff;
+  border-color: #d0d0d0;
+  color: var(--kv-text-muted);
+}
+
 .kv-film-list {
   flex: 1;
   overflow-y: auto;
@@ -509,6 +580,10 @@ body {
   box-sizing: border-box;
 }
 
+html.kv-light-mode .kv-film-card {
+  background: #ffffff;
+}
+
 .kv-film-card:hover {
   border-color: var(--kv-orange);
   box-shadow: 0 0 0 1px var(--kv-orange-soft);
@@ -522,6 +597,10 @@ body {
   background: #050505;
   width: 100%;
   height: 330px;
+}
+
+html.kv-light-mode .kv-film-poster-wrap {
+  background: #f0f0f0;
 }
 
 .kv-film-poster {
@@ -619,6 +698,10 @@ body {
   background: rgba(0, 0, 0, 0.6);
 }
 
+html.kv-light-mode .kv-modal-backdrop {
+  background: rgba(0, 0, 0, 0.3);
+}
+
 .kv-modal-dialog {
   position: relative;
   background: #111;
@@ -630,6 +713,10 @@ body {
   max-height: 90vh;
   overflow: auto;
   box-shadow: var(--kv-shadow-soft);
+}
+
+html.kv-light-mode .kv-modal-dialog {
+  background: #ffffff;
 }
 
 .kv-modal-dialog-wide {
@@ -665,6 +752,10 @@ body {
   background: #050505;
   width: 180px;
   height: 270px;
+}
+
+html.kv-light-mode .kv-movie-poster-wrap {
+  background: #f0f0f0;
 }
 
 .kv-movie-poster {
@@ -769,6 +860,11 @@ body {
   font-family: inherit;
 }
 
+html.kv-light-mode .kv-review-form textarea {
+  background: #ffffff;
+  border-color: #d0d0d0;
+}
+
 .kv-review-form textarea:focus {
   border-color: var(--kv-orange);
   outline: none;
@@ -799,10 +895,18 @@ body {
   background: #151515;
 }
 
+html.kv-light-mode .kv-review-list {
+  background: #f9f9f9;
+}
+
 .kv-review {
   font-size: 12px;
   padding: 6px 0;
   border-bottom: 1px solid #232323;
+}
+
+html.kv-light-mode .kv-review {
+  border-bottom-color: #e0e0e0;
 }
 
 .kv-review:last-child {
